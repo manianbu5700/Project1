@@ -5,3 +5,7 @@ test('validate facebook application', async ({ page }) => {
   await page.goto('https://playwright.dev/');
 });
 
+test('validate flipkart application', async ({ page }) => {
+  await page.goto('https://flipkart.com');
+})
+
