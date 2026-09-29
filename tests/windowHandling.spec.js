@@ -1,37 +1,19 @@
 import { test } from '@playwright/test'
 
-test('Window Hanlding', async ({ browser }) => {
+test('Verify amazon applcation', async ({ browser }) => {
     const context = await browser.newContext()
     const page = await context.newPage()
 
-    await page.goto('https://www.amazon.in/')
-    await page.locator('//input[@id="twotabsearchtextbox"]').fill('iphone 17 pro')
+    await page.goto('https://www.flipkart.com/')
+    await page.locator('(//input[@title="Search for Products, Brands and More"])[1]').fill('iphone 17 pro')
     await page.keyboard.press('Enter')
-    // await page.pause()
 
-    const [newPage] = await Promise.all([context.waitForEvent('page')], page.click('//h2[text()="Results"]//ancestor::div[@data-cel-widget="search_result_0"]//following-sibling::div[@data-asin="B0DGJ8DP1M"]//descendant::h2[contains(@aria-label,"iPhone 16 Plus 256 GB: 5G Mobile Phone with Camera Control")]'))
-
+    const [newPage] = await Promise.all([context.waitForEvent('page'), page.click('//div[text()="Relevance"]//ancestor::div[@class="QSCKDh eRsYMo col-12-12"]//following-sibling::div[@class="lvJbLV col-12-12"]//descendant::div[text()="Apple iPhone 17 Pro (Deep Blue, 256 GB)"]')])
 
     await newPage.waitForLoadState()
     const title = await newPage.title()
     console.log(title)
-    // await page.pause()  
-
-    //const arr=[10,20,30,40,50]
-    // const [a,b]=arr
-
-    //Dynamic Xpath
-
-    //ancestor
-    //parent
-    //preceeding-sibling
-    //child
-    //following-sibling
-    //descendant
-
-    //h2[text()="Results"]//ancestor::div[@data-cel-widget="search_result_0"]
-    //following-sibling::div[@data-asin="B0DGJ8DP1M"]
-    //descendant::h2[contains(@aria-label,"iPhone 16 Plus 256 GB: 5G Mobile Phone with Camera Control")]
-
-
 })
+
+//const arr=[10,20,30,40,50]
+//const [a,b]=arr
